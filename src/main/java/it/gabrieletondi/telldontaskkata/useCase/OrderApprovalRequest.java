@@ -4,7 +4,7 @@ public class OrderApprovalRequest {
     private int orderId;
     private boolean approved;
 
-    public void setOrderId(int orderId) {
+    public OrderApprovalRequest(int orderId) {
         this.orderId = orderId;
     }
 

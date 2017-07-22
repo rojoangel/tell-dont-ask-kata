@@ -33,12 +33,10 @@ public class OrderCreationUseCaseTest {
 
     @Test
     public void sellMultipleItems() throws Exception {
-        SellItemRequest saladRequest = new SellItemRequest("salad", 2);
-        SellItemRequest tomatoRequest = new SellItemRequest("tomato", 3);
 
         final SellItemsRequest request = new SellItemsRequest();
-        request.add(saladRequest);
-        request.add(tomatoRequest);
+        request.add(new SellItemRequest("salad", 2));
+        request.add(new SellItemRequest("tomato", 3));
 
         useCase.run(request);
 

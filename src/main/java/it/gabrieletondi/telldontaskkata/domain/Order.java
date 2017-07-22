@@ -67,6 +67,10 @@ public class Order {
         this.status = status;
     }
 
+    public void approve() {
+        setStatus(OrderStatus.APPROVED);
+    }
+
     public int getId() {
         return id;
     }

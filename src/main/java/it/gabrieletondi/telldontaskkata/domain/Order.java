@@ -43,7 +43,7 @@ public class Order {
         this.tax = tax;
     }
 
-    public OrderStatus getStatus() {
+    private OrderStatus getStatus() {
         return status;
     }
 

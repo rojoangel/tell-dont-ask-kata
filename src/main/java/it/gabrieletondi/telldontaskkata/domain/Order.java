@@ -115,4 +115,30 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (id != order.id) return false;
+        if (total != null ? !total.equals(order.total) : order.total != null) return false;
+        if (currency != null ? !currency.equals(order.currency) : order.currency != null) return false;
+        if (items != null ? !items.equals(order.items) : order.items != null) return false;
+        if (tax != null ? !tax.equals(order.tax) : order.tax != null) return false;
+        return status == order.status;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = total != null ? total.hashCode() : 0;
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
+        result = 31 * result + (tax != null ? tax.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + id;
+        return result;
+    }
 }

@@ -67,7 +67,7 @@ public class Order {
         return getStatus().equals(OrderStatus.REJECTED);
     }
 
-    public void setStatus(OrderStatus status) {
+    private void setStatus(OrderStatus status) {
         this.status = status;
     }
 

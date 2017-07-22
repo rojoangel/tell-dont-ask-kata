@@ -21,7 +21,7 @@ public class OrderApprovalUseCase {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (order.getStatus().equals(OrderStatus.REJECTED)) {
+        if (order.isRejected()) {
             throw new RejectedOrderCannotBeApprovedException();
         }
 

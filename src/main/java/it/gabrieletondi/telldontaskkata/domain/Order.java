@@ -50,6 +50,11 @@ public class Order {
     public boolean isShipped() {
         return getStatus().equals(OrderStatus.SHIPPED);
     }
+
+    public boolean isRejected() {
+        return getStatus().equals(OrderStatus.REJECTED);
+    }
+
     public void setStatus(OrderStatus status) {
         this.status = status;
     }

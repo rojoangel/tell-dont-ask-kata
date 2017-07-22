@@ -47,7 +47,7 @@ public class Order {
         return status;
     }
 
-    public boolean isCreated() {
+    public boolean isNew() {
         return getStatus().equals(OrderStatus.CREATED);
     }
 

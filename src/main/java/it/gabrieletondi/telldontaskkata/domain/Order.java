@@ -15,7 +15,7 @@ public class Order {
     public Order() {
         status = OrderStatus.CREATED;
         items = new ArrayList<>();
-        setCurrency("EUR");
+        this.currency = "EUR";
     }
 
     public BigDecimal getTotal() {
@@ -28,10 +28,6 @@ public class Order {
 
     public String getCurrency() {
         return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public List<OrderItem> getItems() {

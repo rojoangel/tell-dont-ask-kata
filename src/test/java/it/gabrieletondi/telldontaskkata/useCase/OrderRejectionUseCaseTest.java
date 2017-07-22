@@ -48,7 +48,7 @@ public class OrderRejectionUseCaseTest {
     @Test(expected = ShippedOrdersCannotBeChangedException.class)
     public void shippedOrdersCannotBeRejected() throws Exception {
         Order initialOrder = new Order();
-        initialOrder.setStatus(OrderStatus.SHIPPED);
+        initialOrder.ship();
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 

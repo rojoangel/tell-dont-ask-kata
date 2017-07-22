@@ -67,6 +67,10 @@ public class Order {
         this.status = status;
     }
 
+    public void ship() {
+        setStatus(OrderStatus.SHIPPED);
+    }
+
     public void approve() {
         setStatus(OrderStatus.APPROVED);
     }

@@ -50,36 +50,16 @@ public class Order {
         return tax;
     }
 
-    private OrderStatus getStatus() {
-        return status;
-    }
-
-    public boolean isNew() {
-        return getStatus().equals(OrderStatus.CREATED);
-    }
-
-    public boolean isShipped() {
-        return getStatus().equals(OrderStatus.SHIPPED);
-    }
-
-    public boolean isApproved() {
-        return getStatus().equals(OrderStatus.APPROVED);
-    }
-
-    public boolean isRejected() {
-        return getStatus().equals(OrderStatus.REJECTED);
-    }
-
     private void setStatus(OrderStatus status) {
         this.status = status;
     }
 
     public void ship() {
-        if (isNew() || isRejected()) {
+        if (status.equals(OrderStatus.CREATED) || status.equals(OrderStatus.REJECTED)) {
             throw new OrderCannotBeShippedException();
         }
 
-        if (isShipped()) {
+        if (status.equals(OrderStatus.SHIPPED)) {
             throw new OrderCannotBeShippedTwiceException();
         }
 
@@ -87,11 +67,11 @@ public class Order {
     }
 
     public void approve() {
-        if (isShipped()) {
+        if (status.equals(OrderStatus.SHIPPED)) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (isRejected()) {
+        if (status.equals(OrderStatus.REJECTED)) {
             throw new RejectedOrderCannotBeApprovedException();
         }
 
@@ -99,11 +79,11 @@ public class Order {
     }
 
     public void reject() {
-        if (isShipped()) {
+        if (status.equals(OrderStatus.SHIPPED)) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (isApproved()) {
+        if (status.equals(OrderStatus.APPROVED)) {
             throw new ApprovedOrderCannotBeRejectedException();
         }
 

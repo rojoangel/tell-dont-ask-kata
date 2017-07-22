@@ -47,6 +47,9 @@ public class Order {
         return status;
     }
 
+    public boolean isShipped() {
+        return getStatus().equals(OrderStatus.SHIPPED);
+    }
     public void setStatus(OrderStatus status) {
         this.status = status;
     }

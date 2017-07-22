@@ -18,11 +18,14 @@ public class Order {
         status = OrderStatus.CREATED;
         setItems(new ArrayList<>());
         setCurrency("EUR");
-        setTotal(new BigDecimal("0.00"));
         setTax(new BigDecimal("0.00"));
     }
 
     public BigDecimal getTotal() {
+        BigDecimal total = new BigDecimal("0.00");
+        for (OrderItem item : items) {
+            total = total.add(item.getTaxedAmount());
+        }
         return total;
     }
 

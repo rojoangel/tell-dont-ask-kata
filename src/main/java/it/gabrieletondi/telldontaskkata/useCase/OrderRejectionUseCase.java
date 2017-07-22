@@ -19,15 +19,11 @@ public class OrderRejectionUseCase {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (request.isApproved() && order.getStatus().equals(OrderStatus.REJECTED)) {
-            throw new RejectedOrderCannotBeApprovedException();
-        }
-
-        if (!request.isApproved() && order.getStatus().equals(OrderStatus.APPROVED)) {
+        if (order.getStatus().equals(OrderStatus.APPROVED)) {
             throw new ApprovedOrderCannotBeRejectedException();
         }
 
-        order.setStatus(request.isApproved() ? OrderStatus.APPROVED : OrderStatus.REJECTED);
+        order.setStatus(OrderStatus.REJECTED);
         orderRepository.save(order);
     }
 }

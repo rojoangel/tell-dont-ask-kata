@@ -138,4 +138,14 @@ public class Order {
         result = 31 * result + id;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "currency='" + currency + '\'' +
+                ", items=" + items +
+                ", status=" + status +
+                ", id=" + id +
+                '}';
+    }
 }

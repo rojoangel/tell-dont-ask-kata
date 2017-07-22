@@ -18,8 +18,7 @@ public class OrderApprovalUseCaseTest {
 
     @Test
     public void approvedExistingOrder() throws Exception {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
+        Order initialOrder = OrderFactory.created();
         orderRepository.addOrder(initialOrder);
 
         OrderApprovalRequest request = new OrderApprovalRequest(1);
@@ -32,9 +31,7 @@ public class OrderApprovalUseCaseTest {
 
     @Test(expected = RejectedOrderCannotBeApprovedException.class)
     public void cannotApproveRejectedOrder() throws Exception {
-        Order initialOrder = new Order();
-        initialOrder.reject();
-        initialOrder.setId(1);
+        Order initialOrder = OrderFactory.rejected();
         orderRepository.addOrder(initialOrder);
 
         OrderApprovalRequest request = new OrderApprovalRequest(1);

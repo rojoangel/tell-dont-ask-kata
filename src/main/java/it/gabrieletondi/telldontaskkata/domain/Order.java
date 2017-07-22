@@ -47,6 +47,10 @@ public class Order {
         return status;
     }
 
+    public boolean isCreated() {
+        return getStatus().equals(OrderStatus.CREATED);
+    }
+
     public boolean isShipped() {
         return getStatus().equals(OrderStatus.SHIPPED);
     }

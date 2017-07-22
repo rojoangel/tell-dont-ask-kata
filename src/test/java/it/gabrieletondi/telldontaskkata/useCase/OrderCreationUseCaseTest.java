@@ -22,10 +22,7 @@ import static org.junit.Assert.assertThat;
 
 public class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
-    private Category food = new Category() {{
-        setName("food");
-        setTaxPercentage(new BigDecimal("10"));
-    }};;
+    private Category food = new Category("food", new BigDecimal("10"));
     private final ProductCatalog productCatalog = new InMemoryProductCatalog(
             Arrays.<Product>asList(
                     new Product() {{
@@ -55,12 +52,15 @@ public class OrderCreationUseCaseTest {
 
         final Order insertedOrder = orderRepository.getSavedOrder();
 
+        assertThat(insertedOrder, is(buildExpected()));
+    }
+
+    private Order buildExpected() {
         Order created = OrderFactory.created();
         created.setId(0);
         created.add(new OrderItem(productCatalog.getByName("salad"), 2));
         created.add(new OrderItem(productCatalog.getByName("tomato"), 3));
-
-        assertThat(insertedOrder, is(created));
+        return created;
     }
 
     @Test(expected = UnknownProductException.class)

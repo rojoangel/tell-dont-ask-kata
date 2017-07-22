@@ -10,25 +10,21 @@ public class OrderFactory {
         return order;
     }
 
+    public static Order approved() {
+        Order order = created();
+        order.approve();
+        return order;
+    }
+
     public static Order rejected() {
-        Order order = new Order();
-        order.setId(1);
+        Order order = created();
         order.reject();
         return order;
     }
 
     public static Order shipped() {
-        Order order = new Order();
-        order.setId(1);
-        order.approve();
+        Order order = approved();
         order.ship();
-        return order;
-    }
-
-    public static Order approved() {
-        Order order = new Order();
-        order.setId(1);
-        order.approve();
         return order;
     }
 }

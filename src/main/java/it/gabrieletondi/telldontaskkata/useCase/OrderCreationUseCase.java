@@ -10,7 +10,6 @@ import it.gabrieletondi.telldontaskkata.useCase.request.SellItemRequest;
 import it.gabrieletondi.telldontaskkata.useCase.request.SellItemsRequest;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
@@ -26,10 +25,6 @@ public class OrderCreationUseCase {
 
     public void run(SellItemsRequest request) {
         Order order = new Order();
-        order.setItems(new ArrayList<>());
-        order.setCurrency("EUR");
-        order.setTotal(new BigDecimal("0.00"));
-        order.setTax(new BigDecimal("0.00"));
 
         for (SellItemRequest itemRequest : request.getRequests()) {
             Product product = productCatalog.getByName(itemRequest.getProductName());

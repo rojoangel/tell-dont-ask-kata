@@ -27,7 +27,7 @@ public class OrderShipmentUseCaseTest {
 
         useCase.run(request);
 
-        assertThat(orderRepository.getSavedOrder().isShipped(), is(true));
+        assertThat(orderRepository.getSavedOrder(), is(OrderFactory.shipped()));
         assertThat(shipmentService.getShippedOrder(), is(initialOrder));
     }
 

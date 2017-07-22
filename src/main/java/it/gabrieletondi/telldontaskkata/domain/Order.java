@@ -7,16 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private BigDecimal total;
     private String currency;
     private List<OrderItem> items;
-    private BigDecimal tax;
     private OrderStatus status;
     private int id;
 
     public Order() {
         status = OrderStatus.CREATED;
-        setItems(new ArrayList<>());
+        items = new ArrayList<>();
         setCurrency("EUR");
     }
 
@@ -26,10 +24,6 @@ public class Order {
             total = total.add(item.getTaxedAmount());
         }
         return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public String getCurrency() {
@@ -44,8 +38,8 @@ public class Order {
         return items;
     }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
+    public void add(OrderItem item) {
+        this.items.add(item);
     }
 
     public BigDecimal getTax() {
@@ -54,10 +48,6 @@ public class Order {
             tax = tax.add(item.getTax());
         }
         return tax;
-    }
-
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
     }
 
     private OrderStatus getStatus() {
@@ -135,19 +125,15 @@ public class Order {
         Order order = (Order) o;
 
         if (id != order.id) return false;
-        if (total != null ? !total.equals(order.total) : order.total != null) return false;
         if (currency != null ? !currency.equals(order.currency) : order.currency != null) return false;
         if (items != null ? !items.equals(order.items) : order.items != null) return false;
-        if (tax != null ? !tax.equals(order.tax) : order.tax != null) return false;
         return status == order.status;
     }
 
     @Override
     public int hashCode() {
-        int result = total != null ? total.hashCode() : 0;
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        int result = currency != null ? currency.hashCode() : 0;
         result = 31 * result + (items != null ? items.hashCode() : 0);
-        result = 31 * result + (tax != null ? tax.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + id;
         return result;

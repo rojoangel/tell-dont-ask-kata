@@ -29,7 +29,7 @@ public class OrderCreationUseCase {
             }
             else {
                 final OrderItem orderItem = new OrderItem(product, itemRequest.getQuantity());
-                order.getItems().add(orderItem);
+                order.add(orderItem);
             }
         }
 

@@ -46,10 +46,6 @@ public class Order {
         return tax;
     }
 
-    private void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
     public void ship() {
         if (status.equals(OrderStatus.CREATED) || status.equals(OrderStatus.REJECTED)) {
             throw new OrderCannotBeShippedException();
@@ -59,7 +55,7 @@ public class Order {
             throw new OrderCannotBeShippedTwiceException();
         }
 
-        setStatus(OrderStatus.SHIPPED);
+        this.status = OrderStatus.SHIPPED;
     }
 
     public void approve() {
@@ -71,7 +67,7 @@ public class Order {
             throw new RejectedOrderCannotBeApprovedException();
         }
 
-        setStatus(OrderStatus.APPROVED);
+        this.status = OrderStatus.APPROVED;
     }
 
     public void reject() {
@@ -83,7 +79,7 @@ public class Order {
             throw new ApprovedOrderCannotBeRejectedException();
         }
 
-        setStatus(OrderStatus.REJECTED);
+        this.status = OrderStatus.REJECTED;
     }
     public int getId() {
         return id;

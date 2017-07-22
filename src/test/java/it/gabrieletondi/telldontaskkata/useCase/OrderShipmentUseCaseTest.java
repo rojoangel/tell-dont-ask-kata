@@ -1,7 +1,6 @@
 package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
-import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
 import it.gabrieletondi.telldontaskkata.useCase.exception.OrderCannotBeShippedException;
@@ -22,7 +21,7 @@ public class OrderShipmentUseCaseTest {
     public void shipApprovedOrder() throws Exception {
         Order initialOrder = new Order();
         initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.APPROVED);
+        initialOrder.approve();
         orderRepository.addOrder(initialOrder);
 
         OrderShipmentRequest request = new OrderShipmentRequest(1);

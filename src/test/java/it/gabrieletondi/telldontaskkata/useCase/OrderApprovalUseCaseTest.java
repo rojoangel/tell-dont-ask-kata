@@ -34,7 +34,7 @@ public class OrderApprovalUseCaseTest {
     @Test(expected = RejectedOrderCannotBeApprovedException.class)
     public void cannotApproveRejectedOrder() throws Exception {
         Order initialOrder = new Order();
-        initialOrder.setStatus(OrderStatus.REJECTED);
+        initialOrder.reject();
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 

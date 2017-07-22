@@ -71,6 +71,9 @@ public class Order {
         setStatus(OrderStatus.APPROVED);
     }
 
+    public void reject() {
+        setStatus(OrderStatus.REJECTED);
+    }
     public int getId() {
         return id;
     }

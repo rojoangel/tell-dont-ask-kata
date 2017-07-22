@@ -22,7 +22,7 @@ public class OrderShipmentUseCaseTest {
     public void shipApprovedOrder() throws Exception {
         Order initialOrder = new Order();
         initialOrder.setId(1);
-        initialOrder.approve();
+        initialOrder.setStatus(OrderStatus.APPROVED);
         orderRepository.addOrder(initialOrder);
 
         OrderShipmentRequest request = new OrderShipmentRequest(1);
@@ -52,7 +52,7 @@ public class OrderShipmentUseCaseTest {
     public void rejectedOrdersCannotBeShipped() throws Exception {
         Order initialOrder = new Order();
         initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.REJECTED);
+        initialOrder.reject();
         orderRepository.addOrder(initialOrder);
 
         OrderShipmentRequest request = new OrderShipmentRequest(1);

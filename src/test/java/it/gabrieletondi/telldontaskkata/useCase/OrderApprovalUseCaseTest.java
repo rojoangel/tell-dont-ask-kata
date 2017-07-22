@@ -25,8 +25,7 @@ public class OrderApprovalUseCaseTest {
 
         useCase.run(request);
 
-        final Order savedOrder = orderRepository.getSavedOrder();
-        assertThat(savedOrder.isApproved(), is(true));
+        assertThat(orderRepository.getSavedOrder(), is(OrderFactory.approved()));
     }
 
     @Test(expected = RejectedOrderCannotBeApprovedException.class)

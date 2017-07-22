@@ -18,7 +18,6 @@ public class Order {
         status = OrderStatus.CREATED;
         setItems(new ArrayList<>());
         setCurrency("EUR");
-        setTax(new BigDecimal("0.00"));
     }
 
     public BigDecimal getTotal() {
@@ -50,6 +49,10 @@ public class Order {
     }
 
     public BigDecimal getTax() {
+        BigDecimal tax = new BigDecimal("0.00");
+        for (OrderItem item : items) {
+            tax = tax.add(item.getTax());
+        }
         return tax;
     }
 

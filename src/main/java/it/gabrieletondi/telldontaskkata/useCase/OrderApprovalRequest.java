@@ -10,8 +10,4 @@ public class OrderApprovalRequest {
     public int getOrderId() {
         return orderId;
     }
-    
-    public boolean isApproved() {
-        return true;
-    }
 }

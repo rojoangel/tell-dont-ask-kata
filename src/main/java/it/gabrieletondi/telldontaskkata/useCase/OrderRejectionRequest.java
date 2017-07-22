@@ -10,9 +10,4 @@ public class OrderRejectionRequest {
     public int getOrderId() {
         return orderId;
     }
-
-    public boolean isApproved() {
-        return false;
-    }
-
 }

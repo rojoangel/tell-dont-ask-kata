@@ -3,6 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.doubles.TestShipmentService;
+import it.gabrieletondi.telldontaskkata.factory.OrderFactory;
 import it.gabrieletondi.telldontaskkata.useCase.exception.OrderCannotBeShippedException;
 import it.gabrieletondi.telldontaskkata.useCase.exception.OrderCannotBeShippedTwiceException;
 import it.gabrieletondi.telldontaskkata.useCase.request.OrderShipmentRequest;
@@ -63,9 +64,7 @@ public class OrderShipmentUseCaseTest {
 
     @Test(expected = OrderCannotBeShippedTwiceException.class)
     public void shippedOrdersCannotBeShippedAgain() throws Exception {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
-        initialOrder.ship();
+        Order initialOrder = OrderFactory.shipped();
         orderRepository.addOrder(initialOrder);
 
         OrderShipmentRequest request = new OrderShipmentRequest(1);

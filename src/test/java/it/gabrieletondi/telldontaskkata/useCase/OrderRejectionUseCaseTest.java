@@ -2,6 +2,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
+import it.gabrieletondi.telldontaskkata.factory.OrderFactory;
 import it.gabrieletondi.telldontaskkata.useCase.exception.ApprovedOrderCannotBeRejectedException;
 import it.gabrieletondi.telldontaskkata.useCase.exception.ShippedOrdersCannotBeChangedException;
 import it.gabrieletondi.telldontaskkata.useCase.request.OrderRejectionRequest;
@@ -45,9 +46,7 @@ public class OrderRejectionUseCaseTest {
 
     @Test(expected = ShippedOrdersCannotBeChangedException.class)
     public void shippedOrdersCannotBeRejected() throws Exception {
-        Order initialOrder = new Order();
-        initialOrder.ship();
-        initialOrder.setId(1);
+        Order initialOrder = OrderFactory.shipped();
         orderRepository.addOrder(initialOrder);
 
         OrderRejectionRequest request = new OrderRejectionRequest(1);

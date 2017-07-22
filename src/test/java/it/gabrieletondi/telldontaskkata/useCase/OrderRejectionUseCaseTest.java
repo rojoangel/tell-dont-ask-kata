@@ -9,33 +9,33 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-public class OrderApprovalUseCaseTest {
+public class OrderRejectionUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
-    private final OrderApprovalUseCase useCase = new OrderApprovalUseCase(orderRepository);
+    private final OrderRejectionUseCase useCase = new OrderRejectionUseCase(orderRepository);
 
     @Test
-    public void approvedExistingOrder() throws Exception {
+    public void rejectedExistingOrder() throws Exception {
         Order initialOrder = new Order();
         initialOrder.setStatus(OrderStatus.CREATED);
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderRejectionRequest request = new OrderRejectionRequest(1, false);
 
         useCase.run(request);
 
         final Order savedOrder = orderRepository.getSavedOrder();
-        assertThat(savedOrder.getStatus(), is(OrderStatus.APPROVED));
+        assertThat(savedOrder.getStatus(), is(OrderStatus.REJECTED));
     }
 
-    @Test(expected = RejectedOrderCannotBeApprovedException.class)
-    public void cannotApproveRejectedOrder() throws Exception {
+    @Test(expected = ApprovedOrderCannotBeRejectedException.class)
+    public void cannotRejectApprovedOrder() throws Exception {
         Order initialOrder = new Order();
-        initialOrder.setStatus(OrderStatus.REJECTED);
+        initialOrder.setStatus(OrderStatus.APPROVED);
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderRejectionRequest request = new OrderRejectionRequest(1, false);
 
         useCase.run(request);
 
@@ -43,13 +43,13 @@ public class OrderApprovalUseCaseTest {
     }
 
     @Test(expected = ShippedOrdersCannotBeChangedException.class)
-    public void shippedOrdersCannotBeApproved() throws Exception {
+    public void shippedOrdersCannotBeRejected() throws Exception {
         Order initialOrder = new Order();
         initialOrder.setStatus(OrderStatus.SHIPPED);
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderRejectionRequest request = new OrderRejectionRequest(1, false);
 
         useCase.run(request);
 

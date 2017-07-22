@@ -20,7 +20,7 @@ public class OrderApprovalUseCaseTest {
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderApprovalRequest request = new OrderApprovalRequest(1);
 
         useCase.run(request);
 
@@ -35,7 +35,7 @@ public class OrderApprovalUseCaseTest {
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderApprovalRequest request = new OrderApprovalRequest(1);
 
         useCase.run(request);
 
@@ -49,7 +49,7 @@ public class OrderApprovalUseCaseTest {
         initialOrder.setId(1);
         orderRepository.addOrder(initialOrder);
 
-        OrderApprovalRequest request = new OrderApprovalRequest(1, true);
+        OrderApprovalRequest request = new OrderApprovalRequest(1);
 
         useCase.run(request);
 

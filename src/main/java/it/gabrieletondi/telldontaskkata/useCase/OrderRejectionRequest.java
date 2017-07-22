@@ -2,11 +2,9 @@ package it.gabrieletondi.telldontaskkata.useCase;
 
 public class OrderRejectionRequest {
     private int orderId;
-    private boolean approved;
 
-    public OrderRejectionRequest(int orderId, boolean approved) {
+    public OrderRejectionRequest(int orderId) {
         this.orderId = orderId;
-        this.approved = approved;
     }
 
     public int getOrderId() {
@@ -14,7 +12,7 @@ public class OrderRejectionRequest {
     }
 
     public boolean isApproved() {
-        return approved;
+        return false;
     }
 
 }

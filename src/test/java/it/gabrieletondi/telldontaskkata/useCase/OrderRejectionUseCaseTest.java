@@ -3,6 +3,7 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
+import it.gabrieletondi.telldontaskkata.useCase.request.OrderRejectionRequest;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;

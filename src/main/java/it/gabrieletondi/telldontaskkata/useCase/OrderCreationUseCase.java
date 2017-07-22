@@ -6,6 +6,8 @@ import it.gabrieletondi.telldontaskkata.domain.OrderStatus;
 import it.gabrieletondi.telldontaskkata.domain.Product;
 import it.gabrieletondi.telldontaskkata.repository.OrderRepository;
 import it.gabrieletondi.telldontaskkata.repository.ProductCatalog;
+import it.gabrieletondi.telldontaskkata.useCase.request.SellItemRequest;
+import it.gabrieletondi.telldontaskkata.useCase.request.SellItemsRequest;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

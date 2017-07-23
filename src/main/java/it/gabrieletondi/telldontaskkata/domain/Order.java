@@ -18,20 +18,44 @@ public class Order {
         this.currency = "EUR";
     }
 
-    public BigDecimal getTotal() {
-        BigDecimal total = new BigDecimal("0.00");
-        for (OrderItem item : items) {
-            total = total.add(item.calculateTaxedAmount());
-        }
-        return total;
-    }
-
     public String getCurrency() {
         return currency;
     }
 
     public void add(OrderItem item) {
         this.items.add(item);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private boolean isCreated() {
+        return status.equals(OrderStatus.CREATED);
+    }
+
+    private boolean isRejected() {
+        return status.equals(OrderStatus.REJECTED);
+    }
+
+    private boolean isApproved() {
+        return status.equals(OrderStatus.APPROVED);
+    }
+
+    private boolean isShipped() {
+        return status.equals(OrderStatus.SHIPPED);
+    }
+
+    public BigDecimal getTotal() {
+        BigDecimal total = new BigDecimal("0.00");
+        for (OrderItem item : items) {
+            total = total.add(item.calculateTaxedAmount());
+        }
+        return total;
     }
 
     public BigDecimal getTax() {
@@ -76,30 +100,6 @@ public class Order {
         }
 
         this.status = OrderStatus.REJECTED;
-    }
-
-    private boolean isCreated() {
-        return status.equals(OrderStatus.CREATED);
-    }
-
-    private boolean isRejected() {
-        return status.equals(OrderStatus.REJECTED);
-    }
-
-    private boolean isApproved() {
-        return status.equals(OrderStatus.APPROVED);
-    }
-
-    private boolean isShipped() {
-        return status.equals(OrderStatus.SHIPPED);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override

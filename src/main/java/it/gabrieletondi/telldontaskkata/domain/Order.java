@@ -43,11 +43,11 @@ public class Order {
     }
 
     public void ship() {
-        if (status.equals(OrderStatus.CREATED) || status.equals(OrderStatus.REJECTED)) {
+        if (isCreated() || isRejected()) {
             throw new OrderCannotBeShippedException();
         }
 
-        if (status.equals(OrderStatus.SHIPPED)) {
+        if (isShipped()) {
             throw new OrderCannotBeShippedTwiceException();
         }
 
@@ -55,11 +55,11 @@ public class Order {
     }
 
     public void approve() {
-        if (status.equals(OrderStatus.SHIPPED)) {
+        if (isShipped()) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (status.equals(OrderStatus.REJECTED)) {
+        if (isRejected()) {
             throw new RejectedOrderCannotBeApprovedException();
         }
 
@@ -67,15 +67,31 @@ public class Order {
     }
 
     public void reject() {
-        if (status.equals(OrderStatus.SHIPPED)) {
+        if (isShipped()) {
             throw new ShippedOrdersCannotBeChangedException();
         }
 
-        if (status.equals(OrderStatus.APPROVED)) {
+        if (isApproved()) {
             throw new ApprovedOrderCannotBeRejectedException();
         }
 
         this.status = OrderStatus.REJECTED;
+    }
+
+    private boolean isCreated() {
+        return status.equals(OrderStatus.CREATED);
+    }
+
+    private boolean isRejected() {
+        return status.equals(OrderStatus.REJECTED);
+    }
+
+    private boolean isApproved() {
+        return status.equals(OrderStatus.APPROVED);
+    }
+
+    private boolean isShipped() {
+        return status.equals(OrderStatus.SHIPPED);
     }
 
     public int getId() {

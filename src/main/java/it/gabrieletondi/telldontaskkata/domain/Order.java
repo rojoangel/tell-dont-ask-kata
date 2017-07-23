@@ -21,7 +21,7 @@ public class Order {
     public BigDecimal getTotal() {
         BigDecimal total = new BigDecimal("0.00");
         for (OrderItem item : items) {
-            total = total.add(item.getTaxedAmount());
+            total = total.add(item.calculateTaxedAmount());
         }
         return total;
     }
@@ -41,7 +41,7 @@ public class Order {
     public BigDecimal getTax() {
         BigDecimal tax = new BigDecimal("0.00");
         for (OrderItem item : items) {
-            tax = tax.add(item.getTax());
+            tax = tax.add(item.calculateTax());
         }
         return tax;
     }

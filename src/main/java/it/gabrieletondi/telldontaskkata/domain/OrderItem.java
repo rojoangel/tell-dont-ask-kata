@@ -2,20 +2,15 @@ package it.gabrieletondi.telldontaskkata.domain;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
 
 public class OrderItem {
     private Product product;
     private int quantity;
-    private BigDecimal taxedAmount;
-    private BigDecimal tax;
 
     public OrderItem(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
-        this.tax = calculateTax();
-        this.taxedAmount = calculateTaxedAmount();
     }
 
     public Product getProduct() {
@@ -26,19 +21,11 @@ public class OrderItem {
         return quantity;
     }
 
-    public BigDecimal getTaxedAmount() {
-        return taxedAmount;
-    }
-
-    public BigDecimal getTax() {
-        return tax;
-    }
-
-    private BigDecimal calculateTaxedAmount() {
+    public BigDecimal calculateTaxedAmount() {
         return product.calculateTaxedAmount().multiply(BigDecimal.valueOf(getQuantity())).setScale(2, HALF_UP);
     }
 
-    private BigDecimal calculateTax() {
+    public BigDecimal calculateTax() {
         return product.calculateTax().multiply(BigDecimal.valueOf(getQuantity()));
     }
 
@@ -50,18 +37,13 @@ public class OrderItem {
         OrderItem orderItem = (OrderItem) o;
 
         if (quantity != orderItem.quantity) return false;
-        if (product != null ? !product.equals(orderItem.product) : orderItem.product != null) return false;
-        if (taxedAmount != null ? !taxedAmount.equals(orderItem.taxedAmount) : orderItem.taxedAmount != null)
-            return false;
-        return tax != null ? tax.equals(orderItem.tax) : orderItem.tax == null;
+        return product != null ? product.equals(orderItem.product) : orderItem.product == null;
     }
 
     @Override
     public int hashCode() {
         int result = product != null ? product.hashCode() : 0;
         result = 31 * result + quantity;
-        result = 31 * result + (taxedAmount != null ? taxedAmount.hashCode() : 0);
-        result = 31 * result + (tax != null ? tax.hashCode() : 0);
         return result;
     }
 
@@ -70,8 +52,6 @@ public class OrderItem {
         return "OrderItem{" +
                 "product=" + product +
                 ", quantity=" + quantity +
-                ", taxedAmount=" + taxedAmount +
-                ", tax=" + tax +
                 '}';
     }
 }

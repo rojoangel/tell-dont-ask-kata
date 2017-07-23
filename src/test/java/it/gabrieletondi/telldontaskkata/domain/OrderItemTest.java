@@ -20,12 +20,12 @@ public class OrderItemTest {
     }
 
     @Test
-    public void getTaxedAmount() throws Exception {
-        assertThat(item.getTaxedAmount(), is(new BigDecimal("7.84")));
+    public void calculateTaxedAmount() throws Exception {
+        assertThat(item.calculateTaxedAmount(), is(new BigDecimal("7.84")));
     }
 
     @Test
-    public void getTax() throws Exception {
-        assertThat(item.getTax(), is(new BigDecimal("0.72")));
+    public void calculateTax() throws Exception {
+        assertThat(item.calculateTax(), is(new BigDecimal("0.72")));
     }
 }

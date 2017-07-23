@@ -50,7 +50,7 @@ public class Order {
         return status.equals(OrderStatus.SHIPPED);
     }
 
-    public BigDecimal getTotal() {
+    public BigDecimal calculateTotal() {
         BigDecimal total = new BigDecimal("0.00");
         for (OrderItem item : items) {
             total = total.add(item.calculateTaxedAmount());
@@ -58,7 +58,7 @@ public class Order {
         return total;
     }
 
-    public BigDecimal getTax() {
+    public BigDecimal calculateTax() {
         BigDecimal tax = new BigDecimal("0.00");
         for (OrderItem item : items) {
             tax = tax.add(item.calculateTax());

@@ -24,14 +24,14 @@ public class OrderTest {
     }
 
     @Test
-    public void getTotal() throws Exception {
-        assertThat(order.getTotal(), is(new BigDecimal("23.20")));
+    public void calculateTotal() throws Exception {
+        assertThat(order.calculateTotal(), is(new BigDecimal("23.20")));
 
     }
 
     @Test
-    public void getTax() throws Exception {
-        assertThat(order.getTax(), is(new BigDecimal("2.13")));
+    public void calculateTax() throws Exception {
+        assertThat(order.calculateTax(), is(new BigDecimal("2.13")));
     }
 
 }

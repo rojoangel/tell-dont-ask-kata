@@ -30,10 +30,6 @@ public class Order {
         return currency;
     }
 
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
     public void add(OrderItem item) {
         this.items.add(item);
     }
@@ -81,6 +77,7 @@ public class Order {
 
         this.status = OrderStatus.REJECTED;
     }
+
     public int getId() {
         return id;
     }

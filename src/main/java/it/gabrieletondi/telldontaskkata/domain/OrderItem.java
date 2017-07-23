@@ -35,19 +35,11 @@ public class OrderItem {
     }
 
     private BigDecimal calculateTaxedAmount() {
-        return calculateUnitaryTaxedAmount().multiply(BigDecimal.valueOf(getQuantity())).setScale(2, HALF_UP);
-    }
-
-    private BigDecimal calculateUnitaryTaxedAmount() {
-        return product.getPrice().add(calculateUnitaryTax()).setScale(2, HALF_UP);
+        return product.calculateTaxedAmount().multiply(BigDecimal.valueOf(getQuantity())).setScale(2, HALF_UP);
     }
 
     private BigDecimal calculateTax() {
-        return calculateUnitaryTax().multiply(BigDecimal.valueOf(getQuantity()));
-    }
-
-    private BigDecimal calculateUnitaryTax() {
-        return getProduct().getPrice().divide(valueOf(100)).multiply(product.getCategory().getTaxPercentage()).setScale(2, HALF_UP);
+        return product.calculateTax().multiply(BigDecimal.valueOf(getQuantity()));
     }
 
     @Override

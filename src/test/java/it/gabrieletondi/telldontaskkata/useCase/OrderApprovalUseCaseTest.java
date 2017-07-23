@@ -3,8 +3,8 @@ package it.gabrieletondi.telldontaskkata.useCase;
 import it.gabrieletondi.telldontaskkata.domain.Order;
 import it.gabrieletondi.telldontaskkata.doubles.TestOrderRepository;
 import it.gabrieletondi.telldontaskkata.factory.OrderFactory;
-import it.gabrieletondi.telldontaskkata.useCase.exception.RejectedOrderCannotBeApprovedException;
-import it.gabrieletondi.telldontaskkata.useCase.exception.ShippedOrdersCannotBeChangedException;
+import it.gabrieletondi.telldontaskkata.exception.RejectedOrderCannotBeApprovedException;
+import it.gabrieletondi.telldontaskkata.exception.ShippedOrdersCannotBeChangedException;
 import it.gabrieletondi.telldontaskkata.useCase.request.OrderApprovalRequest;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package it.gabrieletondi.telldontaskkata.useCase.exception;
+package it.gabrieletondi.telldontaskkata.exception;
 
 public class OrderCannotBeShippedTwiceException extends RuntimeException {
 }
